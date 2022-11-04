@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Matrix animation</title>
+		<style>
+			*{
+				padding:0;
+				margin:0;
+				box-sizing:border-box;
+				font-family:arial;
+				cursor:none;
+			}
+			body{
+				width:1366px;
+				height:768px;
+				background:url('love_2.jpg') no-repeat;
+				background-size:cover;
+				background-position:center;
+
+				overflow:hidden;
+				display:flex;
+			}
+			body .box{
+				position:absolute;
+				width:100%;
+				height:50%;
+				display:flex;
+				justify-content:space-around;
+				flex-wrap:wrap;
+				flex-direction:row;
+				align-content:space-around;
+				overflow:hidden;
+				gap:60px;
+				-webkit-box-reflect:below 0px linear-gradient(black,black);
+				
+			}
+			i{
+				height:120px;
+				width:120px;
+				position:relative;
+				animation:animate 8s linear infinite;
+				background:url('heart_5.png') no-repeat;
+				background-size:contain;
+				background-position:center;
+				animation-delay:calc(-8s * var(--j));
+			}
+			
+			
+			
+			@keyframes animate{
+				0%{
+					transform:translateY(384px);
+				}
+				100%{
+					transform:translateY(-384px);
+				}
+			}
+		</style>
+	</head>
+    <body>
+		<div class='box'></div>
+		<script>
+			function rain(){
+				let amount=25;
+				let body = document.querySelector('.box');
+				let i =0;
+				while (i<amount){
+					let drop = document.createElement('i');
+					drop.style=`--j:${Math.random()}`;
+					drop.style.filter=`hue-rotate(${Math.random()*360}deg)`;
+					body.appendChild(drop);
+					i++;
+				}
+			}
+			rain();
+		</script>
+	</body>
+</html>
